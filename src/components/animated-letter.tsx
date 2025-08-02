@@ -60,7 +60,7 @@ export default function AnimatedLetter({ content }: AnimatedLetterProps) {
     return (
        <div className="text-center">
          <button onClick={() => setIsRevealed(true)} className="px-6 py-3 bg-primary text-primary-foreground rounded-full shadow-lg hover:bg-primary/90 transform hover:scale-105 transition-transform duration-300 font-headline text-xl">
-           Open Your Letter
+           Abrir tu Carta
          </button>
        </div>
     );
@@ -85,8 +85,8 @@ export default function AnimatedLetter({ content }: AnimatedLetterProps) {
 
       <Card className="w-full bg-card/80 backdrop-blur-sm shadow-2xl shadow-accent/20 rounded-2xl overflow-hidden">
         <CardHeader className="text-center">
-          <CardTitle className="font-headline text-3xl text-foreground">For My Dearest Daiana</CardTitle>
-          <CardDescription className="font-body text-muted-foreground">August 1st</CardDescription>
+          <CardTitle className="font-headline text-3xl text-foreground">Para Mi Novia Querida</CardTitle>
+          <CardDescription className="font-body text-muted-foreground">1 de Agosto</CardDescription>
         </CardHeader>
         <CardContent>
           <p className="font-body text-lg/relaxed text-foreground whitespace-pre-wrap">

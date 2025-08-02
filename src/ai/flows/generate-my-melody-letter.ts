@@ -11,12 +11,12 @@ import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
 const GenerateMyMelodyLetterInputSchema = z.object({
-  prompt: z.string().describe('A prompt describing the content of the letter.'),
+  prompt: z.string().describe('Un prompt que describe el contenido de la carta.'),
 });
 export type GenerateMyMelodyLetterInput = z.infer<typeof GenerateMyMelodyLetterInputSchema>;
 
 const GenerateMyMelodyLetterOutputSchema = z.object({
-  letterContent: z.string().describe('The generated letter content with My Melody theme.'),
+  letterContent: z.string().describe('El contenido de la carta generada con el tema de My Melody.'),
 });
 export type GenerateMyMelodyLetterOutput = z.infer<typeof GenerateMyMelodyLetterOutputSchema>;
 
@@ -28,9 +28,9 @@ const generateMyMelodyLetterPrompt = ai.definePrompt({
   name: 'generateMyMelodyLetterPrompt',
   input: {schema: GenerateMyMelodyLetterInputSchema},
   output: {schema: GenerateMyMelodyLetterOutputSchema},
-  prompt: `You are a creative AI assistant specializing in generating personalized letters with a My Melody theme.
+  prompt: `Eres un asistente de IA creativo especializado en generar cartas personalizadas con el tema de My Melody.
 
-  Please generate a letter based on the following prompt, incorporating elements of animation, using a soft rose (#E0BBE4) and light pink (#F8E8F8) color scheme, Belleza and Alegreya fonts, and My Melody-themed motifs (e.g., musical notes, flowers).
+  Por favor, genera una carta en ESPAÑOL basada en el siguiente prompt, incorporando elementos de animación, usando una paleta de colores rosa suave (#E0BBE4) y rosa claro (#F8E8F8), fuentes Belleza y Alegreya, y motivos temáticos de My Melody (por ejemplo, notas musicales, flores).
 
   Prompt: {{{prompt}}}
   `,
