@@ -27,7 +27,7 @@ export default function AnimatedLetter({ content }: AnimatedLetterProps) {
       let i = 0;
       const interval = setInterval(() => {
         if (i < content.length) {
-            setAnimatedContent((prev) => prev + content[i]);
+            setAnimatedContent((prev) => prev + content.charAt(i));
             i++;
         } else {
             clearInterval(interval);
