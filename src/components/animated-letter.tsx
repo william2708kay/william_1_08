@@ -120,7 +120,7 @@ export default function AnimatedLetter({ content }: AnimatedLetterProps) {
 
   return (
     <div 
-        className="relative w-full max-w-2xl animate-in fade-in duration-1000"
+        className="relative w-full max-w-2xl animate-in fade-in duration-1000 rounded-2xl overflow-hidden"
         style={{
             backgroundImage: `url(/mymelody.png)`,
             backgroundSize: 'cover',
@@ -128,7 +128,7 @@ export default function AnimatedLetter({ content }: AnimatedLetterProps) {
             backgroundRepeat: 'no-repeat',
         }}
     >
-      <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-background/50 backdrop-blur-sm" />
       <div className="relative z-10">
         {particles.map(p => (
            <button
@@ -136,16 +136,16 @@ export default function AnimatedLetter({ content }: AnimatedLetterProps) {
             onClick={() => handleParticleClick(p.id)}
             aria-label="interactive particle"
             className={cn(
-              "absolute opacity-30 dark:opacity-20 transform-gpu",
+              "absolute opacity-40 dark:opacity-30 transform-gpu",
               poppedParticles.has(p.id) && 'animate-pop'
               )}
             style={p.style}
           >
-            <p.Icon className="w-6 h-6" />
+            <p.Icon className="w-8 h-8" />
           </button>
         ))}
 
-        <Card className="w-full bg-card/80 backdrop-blur-sm shadow-2xl shadow-primary/20 rounded-2xl overflow-hidden">
+        <Card className="w-full bg-card/60 backdrop-blur-sm shadow-2xl shadow-primary/20 rounded-2xl overflow-hidden border-none">
           <CardHeader className="text-center">
             <CardTitle className="font-headline text-3xl text-foreground">Para Mi Amor</CardTitle>
             <CardDescription className="font-body text-muted-foreground">1 de Agosto</CardDescription>
