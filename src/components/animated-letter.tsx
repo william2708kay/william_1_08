@@ -9,7 +9,6 @@ import { StrawberryIcon } from './icons/strawberry-icon';
 import { MyMelodyIcon } from './icons/my-melody-icon';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
 import { HeartIcon } from './icons/heart-icon';
 
 interface AnimatedLetterProps {
@@ -44,8 +43,8 @@ export default function AnimatedLetter({ content }: AnimatedLetterProps) {
   }, [content, isRevealed]);
   
   const handleNameCheck = () => {
-    const enteredName = nameInput.trim().toUpperCase();
-    const validNames = ['DAIANA', 'CLEMENTINA', 'DAIANA CLEMENTINA', 'DAIANACLEMENTINA'];
+    const enteredName = nameInput.trim().toUpperCase().replace(/\s+/g, '');
+    const validNames = ['DAIANA', 'CLEMENTINA', 'DAIANACLEMENTINA'];
 
     if (validNames.includes(enteredName)) {
       setIsUnlocked(true);
