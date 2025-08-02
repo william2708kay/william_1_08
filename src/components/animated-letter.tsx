@@ -83,8 +83,7 @@ export default function AnimatedLetter({ content }: AnimatedLetterProps) {
   if (!isRevealed) {
     return (
        <div className="text-center bg-card/80 backdrop-blur-sm shadow-2xl shadow-primary/20 rounded-2xl p-8 max-w-md w-full flex flex-col items-center">
-         <Image src="/giftmelody.gif" alt="My Melody GIF" width={120} height={120} unoptimized />
-         <h2 className="font-headline text-2xl text-foreground mt-4 mb-4">HOLA, SOY WILL</h2>
+         <Image src="/giftmelody.gif" alt="My Melody GIF" width={120} height={120} unoptimized className="mb-4" />
          <p className="text-muted-foreground mb-6">Esta carta solo la puede ver mi novia. Por favor, ingresa tu nombre.</p>
          <div className="flex flex-col gap-4 items-center">
             <Input 
