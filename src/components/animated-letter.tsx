@@ -31,10 +31,11 @@ export default function AnimatedLetter({ content }: AnimatedLetterProps) {
       setAnimatedContent('');
       let i = 0;
       const interval = setInterval(() => {
-        setAnimatedContent((prev) => prev + content[i]);
-        i++;
-        if (i >= content.length) {
-          clearInterval(interval);
+        if (i < content.length) {
+            setAnimatedContent((prev) => prev + content[i]);
+            i++;
+        } else {
+            clearInterval(interval);
         }
       }, 25);
       return () => clearInterval(interval);
@@ -76,7 +77,7 @@ export default function AnimatedLetter({ content }: AnimatedLetterProps) {
 
   if (!isRevealed) {
     return (
-       <div className="text-center bg-card/80 backdrop-blur-sm shadow-2xl shadow-accent/20 rounded-2xl p-8 max-w-md w-full">
+       <div className="text-center bg-card/80 backdrop-blur-sm shadow-2xl shadow-primary/20 rounded-2xl p-8 max-w-md w-full">
          <h2 className="font-headline text-2xl text-foreground mb-4">HOLA, SOY WILL</h2>
          <p className="text-muted-foreground mb-6">Esta carta solo la puede ver mi novia. Por favor, ingresa tu nombre.</p>
          <div className="flex flex-col gap-4 items-center">
@@ -116,7 +117,7 @@ export default function AnimatedLetter({ content }: AnimatedLetterProps) {
           onClick={() => handleParticleClick(p.id)}
           aria-label="interactive particle"
           className={cn(
-            "absolute text-accent opacity-30 dark:opacity-20 transform-gpu",
+            "absolute text-primary opacity-30 dark:opacity-20 transform-gpu",
             poppedParticles.has(p.id) && 'animate-pop'
             )}
           style={p.style}
@@ -125,7 +126,7 @@ export default function AnimatedLetter({ content }: AnimatedLetterProps) {
         </button>
       ))}
 
-      <Card className="w-full bg-card/80 backdrop-blur-sm shadow-2xl shadow-accent/20 rounded-2xl overflow-hidden">
+      <Card className="w-full bg-card/80 backdrop-blur-sm shadow-2xl shadow-primary/20 rounded-2xl overflow-hidden">
         <CardHeader className="text-center">
           <CardTitle className="font-headline text-3xl text-foreground">Para Mi Amor</CardTitle>
           <CardDescription className="font-body text-muted-foreground">1 de Agosto</CardDescription>
@@ -133,11 +134,11 @@ export default function AnimatedLetter({ content }: AnimatedLetterProps) {
         <CardContent>
           <p className="font-body text-lg/relaxed text-foreground whitespace-pre-wrap">
             {animatedContent}
-            <span className="inline-block w-2 h-5 bg-foreground/70 animate-pulse ml-1" />
+            {animatedContent.length === content.length && <span className="inline-block w-2 h-5 bg-foreground/70 animate-pulse ml-1" />}
           </p>
         </CardContent>
         <CardFooter className="flex justify-end">
-           <MyMelodyIcon className="w-12 h-12 text-accent" />
+           <MyMelodyIcon className="w-12 h-12 text-primary" />
         </CardFooter>
       </Card>
     </div>

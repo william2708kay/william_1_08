@@ -20,7 +20,7 @@ export default function Home() {
   return (
     <main className="container mx-auto flex min-h-screen flex-col items-center justify-center p-4 selection:bg-accent selection:text-accent-foreground">
       <header className="text-center mb-8 flex flex-col items-center gap-4">
-        <MyMelodyIcon className="w-24 h-24 text-accent drop-shadow-lg" />
+        <MyMelodyIcon className="w-24 h-24 text-primary drop-shadow-lg" />
         <h1 className="font-headline text-4xl md:text-5xl text-foreground drop-shadow-md">
           Para la mejor novia
         </h1>
