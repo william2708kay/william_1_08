@@ -65,6 +65,7 @@ export default function AnimatedLetter({ content }: AnimatedLetterProps) {
       animation: `float ${Math.random() * 8 + 6}s ease-in-out infinite`,
       animationDelay: `${Math.random() * 6}s`,
       color: i < 10 ? 'hsl(var(--primary))' : 'hsl(var(--primary) / 0.3)',
+      transform: `scale(${Math.random() * 0.5 + 0.8})`
     }
   })), []);
   
@@ -121,13 +122,17 @@ export default function AnimatedLetter({ content }: AnimatedLetterProps) {
   return (
     <div 
         className="relative w-full max-w-2xl animate-in fade-in duration-1000 rounded-2xl overflow-hidden"
-        style={{
-            backgroundImage: `url(/mymelody.png)`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-        }}
     >
+        <div 
+            className="absolute inset-0"
+            style={{
+                backgroundImage: `url(/mymelody.png)`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                opacity: 0.3,
+            }}
+        />
       <div className="absolute inset-0 bg-background/50 backdrop-blur-sm" />
       <div className="relative z-10">
         {particles.map(p => (
@@ -141,7 +146,7 @@ export default function AnimatedLetter({ content }: AnimatedLetterProps) {
               )}
             style={p.style}
           >
-            <p.Icon className="w-8 h-8" />
+            <p.Icon className="w-12 h-12" />
           </button>
         ))}
 
