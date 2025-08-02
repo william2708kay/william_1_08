@@ -45,7 +45,9 @@ export default function AnimatedLetter({ content }: AnimatedLetterProps) {
   
   const handleNameCheck = () => {
     const enteredName = nameInput.trim().toUpperCase();
-    if (enteredName === 'DAIANA' || enteredName === 'CLEMENTINA') {
+    const validNames = ['DAIANA', 'CLEMENTINA', 'DAIANA CLEMENTINA', 'DAIANACLEMENTINA'];
+
+    if (validNames.includes(enteredName)) {
       setIsUnlocked(true);
       setUnlockMessage('¡Correcto! Sabía que eras tú, mi amor. ❤️');
       setErrorMessage('');
