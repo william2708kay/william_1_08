@@ -4,64 +4,11 @@ import * as React from 'react';
 import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { FlowerIcon } from './icons/flower-icon';
-import { MusicalNoteIcon } from './icons/musical-note-icon';
-import { StrawberryIcon } from './icons/strawberry-icon';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { HeartIcon } from './icons/heart-icon';
 
 interface AnimatedLetterProps {
   content: string;
-}
-
-const icons = [FlowerIcon, StrawberryIcon, MusicalNoteIcon, HeartIcon];
-
-const Particles = () => {
-  const [poppedParticles, setPoppedParticles] = React.useState<Set<number>>(new Set());
-  
-  const particles = React.useMemo(() => Array.from({ length: 25 }).map((_, i) => ({
-    id: i,
-    Icon: i < 10 ? HeartIcon : icons[i % icons.length],
-    style: {
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-      animation: `float ${Math.random() * 8 + 6}s ease-in-out infinite`,
-      animationDelay: `${Math.random() * 6}s`,
-      color: i < 10 ? 'hsl(var(--primary))' : 'hsl(var(--primary) / 0.3)',
-      transform: `scale(${Math.random() * 0.5 + 0.8})`
-    }
-  })), []);
-  
-  const handleParticleClick = (id: number) => {
-    setPoppedParticles(prev => new Set(prev).add(id));
-    setTimeout(() => {
-      setPoppedParticles(prev => {
-        const newSet = new Set(prev);
-        newSet.delete(id);
-        return newSet;
-      });
-    }, 300);
-  };
-  
-  return (
-    <div className="absolute inset-0 z-0 h-full w-full">
-      {particles.map(p => (
-        <button
-          key={p.id}
-          onClick={() => handleParticleClick(p.id)}
-          aria-label="interactive particle"
-          className={cn(
-            "absolute opacity-40 dark:opacity-30 transform-gpu",
-            poppedParticles.has(p.id) && 'animate-pop'
-          )}
-          style={p.style}
-        >
-          <p.Icon className="w-12 h-12" />
-        </button>
-      ))}
-    </div>
-  )
 }
 
 export default function AnimatedLetter({ content }: AnimatedLetterProps) {
@@ -71,6 +18,8 @@ export default function AnimatedLetter({ content }: AnimatedLetterProps) {
   const [isUnlocked, setIsUnlocked] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState('');
   const [unlockMessage, setUnlockMessage] = React.useState('');
+  const audioRef = React.useRef<HTMLAudioElement>(null);
+
 
   React.useEffect(() => {
     if (isRevealed) {
@@ -84,6 +33,14 @@ export default function AnimatedLetter({ content }: AnimatedLetterProps) {
             clearInterval(interval);
         }
       }, 25);
+
+      if (audioRef.current) {
+        audioRef.current.volume = 0.2;
+        audioRef.current.play().catch(error => {
+          console.error("Audio playback failed:", error);
+        });
+      }
+
       return () => clearInterval(interval);
     }
   }, [content, isRevealed]);
@@ -143,7 +100,7 @@ export default function AnimatedLetter({ content }: AnimatedLetterProps) {
 
   return (
     <>
-      <Particles />
+      <audio ref={audioRef} src="/teamo.mp3" loop />
       <div 
           className="relative w-full max-w-2xl animate-in fade-in duration-1000 rounded-2xl overflow-hidden"
       >
