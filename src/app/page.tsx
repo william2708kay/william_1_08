@@ -1,5 +1,6 @@
 import AnimatedLetter from '@/components/animated-letter';
 import { MyMelodyIcon } from '@/components/icons/my-melody-icon';
+import Image from 'next/image';
 
 export default function Home() {
   const letterContent = `Mi novia, la más enojona, chinchosa y dramática… sí, esa misma es a quien amo con todo mi corazón. Porque detrás de cada enojo está su dulzura, y en cada drama, su forma única de amar. Desde que llegaste a mi vida, todo se ha vuelto más intenso, más bonito, más real. Trajiste risas, retos, abrazos que sanan, y una manera de querer que no cambio por nada. Eres mi caos favorito… y mi paz también.
@@ -21,7 +22,7 @@ lo siento por no estar ahí estoy preparando algo muy bonito pronto estaremos ju
       <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" />
       <div className="z-10 flex flex-col items-center justify-center w-full">
         <header className="text-center mb-8 flex flex-col items-center gap-4">
-          <MyMelodyIcon className="w-24 h-24 text-primary drop-shadow-lg" />
+          <Image src="/giftmelody.gif" alt="My Melody" width={96} height={96} unoptimized className="drop-shadow-lg" />
           <h1 className="font-headline text-4xl md:text-5xl text-foreground drop-shadow-md">
             Para la mejor novia
           </h1>
