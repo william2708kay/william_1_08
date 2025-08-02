@@ -6,7 +6,7 @@ export default function Home() {
 
 Ni sabía que existía este día pero se que tu lo sabias …Gracias por estar en mi vida, por hacerme sentir querido, por hacer que los días sean más lindos solo con tu sonrisa. Espero tenerte a mi lado por el resto de mi vida… y más allá te amo DAIANA.
 
-lo siento por no estar ahí estoy preparando algo muy bonito pronto estaremos juntitos, quiero que sepas algo muy claro: yo tengo a la novia más hermosa del mundo, y no la cambiaría por nada ni por nadie. Eres única, con todas tus locuras, tus enojos y tu dulzura, y te amo tal como eres. te extraño no sabes cuanto`;
+lo siento por no estar ahí. pronto estaremos juntitos, quiero que sepas algo muy claro: yo tengo a la novia más hermosa del mundo, y no la cambiaría por nada ni por nadie. Eres única, con todas tus locuras, tus enojos y tu dulzura, y te amo tal como eres. te extraño no sabes cuanto`;
 
   return (
     <main 
@@ -17,8 +17,8 @@ lo siento por no estar ahí estoy preparando algo muy bonito pronto estaremos ju
                 <HeartIcon key={i} className="absolute text-primary/50" style={{
                     left: `${Math.random() * 100}%`,
                     top: `${Math.random() * 100}%`,
-                    width: `${2 + Math.random() * 4}rem`,
-                    height: `${2 + Math.random() * 4}rem`,
+                    width: `${3 + Math.random() * 6}rem`,
+                    height: `${3 + Math.random() * 6}rem`,
                     animation: `float ${5 + Math.random() * 5}s ease-in-out infinite`,
                     animationDelay: `${Math.random() * 5}s`,
                 }} />
