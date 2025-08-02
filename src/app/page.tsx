@@ -1,5 +1,4 @@
 import AnimatedLetter from '@/components/animated-letter';
-import Image from 'next/image';
 
 export default function Home() {
   const letterContent = `Mi novia, la más enojona, chinchosa y dramática… sí, esa misma es a quien amo con todo mi corazón. Porque detrás de cada enojo está su dulzura, y en cada drama, su forma única de amar. Desde que llegaste a mi vida, todo se ha vuelto más intenso, más bonito, más real. Trajiste risas, retos, abrazos que sanan, y una manera de querer que no cambio por nada. Eres mi caos favorito… y mi paz también.
