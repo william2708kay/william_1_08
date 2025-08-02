@@ -7,6 +7,9 @@ import { FlowerIcon } from './icons/flower-icon';
 import { MusicalNoteIcon } from './icons/musical-note-icon';
 import { StrawberryIcon } from './icons/strawberry-icon';
 import { MyMelodyIcon } from './icons/my-melody-icon';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
 
 interface AnimatedLetterProps {
   content: string;
@@ -18,6 +21,10 @@ export default function AnimatedLetter({ content }: AnimatedLetterProps) {
   const [animatedContent, setAnimatedContent] = React.useState('');
   const [isRevealed, setIsRevealed] = React.useState(false);
   const [poppedParticles, setPoppedParticles] = React.useState<Set<number>>(new Set());
+  const [nameInput, setNameInput] = React.useState('');
+  const [isUnlocked, setIsUnlocked] = React.useState(false);
+  const [errorMessage, setErrorMessage] = React.useState('');
+  const [unlockMessage, setUnlockMessage] = React.useState('');
 
   React.useEffect(() => {
     if (isRevealed) {
@@ -33,6 +40,17 @@ export default function AnimatedLetter({ content }: AnimatedLetterProps) {
       return () => clearInterval(interval);
     }
   }, [content, isRevealed]);
+  
+  const handleNameCheck = () => {
+    if (nameInput.trim().toUpperCase() === 'DAIANA') {
+      setIsUnlocked(true);
+      setUnlockMessage('¡Correcto! Sabía que eras tú, mi amor. ❤️');
+      setErrorMessage('');
+    } else {
+      setErrorMessage('Inténtalo de nuevo, solo la dueña de mi corazón puede entrar.');
+      setIsUnlocked(false);
+    }
+  };
 
   const particles = React.useMemo(() => Array.from({ length: 15 }).map((_, i) => ({
     id: i,
@@ -58,10 +76,34 @@ export default function AnimatedLetter({ content }: AnimatedLetterProps) {
 
   if (!isRevealed) {
     return (
-       <div className="text-center">
-         <button onClick={() => setIsRevealed(true)} className="px-6 py-3 bg-primary text-primary-foreground rounded-full shadow-lg hover:bg-primary/90 transform hover:scale-105 transition-transform duration-300 font-headline text-xl">
-           Abrir tu Carta
-         </button>
+       <div className="text-center bg-card/80 backdrop-blur-sm shadow-2xl shadow-accent/20 rounded-2xl p-8 max-w-md w-full">
+         <h2 className="font-headline text-2xl text-foreground mb-4">HOLA, SOY WILL</h2>
+         <p className="text-muted-foreground mb-6">Esta carta solo la puede ver mi novia. Por favor, ingresa tu nombre.</p>
+         <div className="flex flex-col gap-4 items-center">
+            <Input 
+              type="text"
+              placeholder="Escribe tu nombre aquí..."
+              value={nameInput}
+              onChange={(e) => setNameInput(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && handleNameCheck()}
+              className="max-w-xs text-center"
+              disabled={isUnlocked}
+            />
+            {!isUnlocked && (
+              <Button onClick={handleNameCheck}>
+                Verificar
+              </Button>
+            )}
+
+            {errorMessage && <p className="text-destructive text-sm mt-2">{errorMessage}</p>}
+            {unlockMessage && <p className="text-primary text-sm mt-2 font-semibold">{unlockMessage}</p>}
+
+            {isUnlocked && (
+              <button onClick={() => setIsRevealed(true)} className="mt-4 px-6 py-3 bg-primary text-primary-foreground rounded-full shadow-lg hover:bg-primary/90 transform hover:scale-105 transition-transform duration-300 font-headline text-xl animate-in fade-in">
+                Abrir tu Carta
+              </button>
+            )}
+         </div>
        </div>
     );
   }
