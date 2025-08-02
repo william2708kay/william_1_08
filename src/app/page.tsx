@@ -11,21 +11,8 @@ lo siento por no estar ahí estoy preparando algo muy bonito pronto estaremos ju
   return (
     <main 
       className="container mx-auto flex min-h-screen flex-col items-center justify-center p-4 selection:bg-accent selection:text-accent-foreground"
-      style={{
-        backgroundImage: `url(/mymelody.png)`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-      }}
     >
-      <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" />
       <div className="z-10 flex flex-col items-center justify-center w-full">
-        <header className="text-center mb-8 flex flex-col items-center gap-4">
-          <Image src="/giftmelodi.gif" alt="My Melody Gift" width={100} height={100} unoptimized />
-          <h1 className="font-headline text-4xl md:text-5xl text-foreground drop-shadow-md">
-            Para la mejor novia
-          </h1>
-        </header>
         <AnimatedLetter content={letterContent} />
         <footer className="absolute bottom-4 text-center text-sm text-muted-foreground">
           <p>Hecho con ♡ para ti</p>

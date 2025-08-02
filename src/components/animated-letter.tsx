@@ -82,6 +82,12 @@ export default function AnimatedLetter({ content }: AnimatedLetterProps) {
   if (!isRevealed) {
     return (
        <div className="text-center bg-card/80 backdrop-blur-sm shadow-2xl shadow-primary/20 rounded-2xl p-8 max-w-md w-full flex flex-col items-center">
+        <header className="text-center mb-8 flex flex-col items-center gap-4">
+          <Image src="/giftmelodi.gif" alt="My Melody Gift" width={150} height={150} unoptimized className="rounded-full border-4 border-primary/50 shadow-lg"/>
+          <h1 className="font-headline text-4xl md:text-5xl text-foreground drop-shadow-md">
+            Para la mejor novia
+          </h1>
+        </header>
          <p className="text-muted-foreground mb-6">Esta carta solo la puede ver mi novia. Por favor, ingresa tu nombre.</p>
          <div className="flex flex-col gap-4 items-center">
             <Input 
@@ -113,36 +119,47 @@ export default function AnimatedLetter({ content }: AnimatedLetterProps) {
   }
 
   return (
-    <div className="relative w-full max-w-2xl animate-in fade-in duration-1000">
-      {particles.map(p => (
-         <button
-          key={p.id}
-          onClick={() => handleParticleClick(p.id)}
-          aria-label="interactive particle"
-          className={cn(
-            "absolute opacity-30 dark:opacity-20 transform-gpu",
-            poppedParticles.has(p.id) && 'animate-pop'
-            )}
-          style={p.style}
-        >
-          <p.Icon className="w-6 h-6" />
-        </button>
-      ))}
+    <div 
+        className="relative w-full max-w-2xl animate-in fade-in duration-1000"
+        style={{
+            backgroundImage: `url(/mymelody.png)`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+        }}
+    >
+      <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" />
+      <div className="relative z-10">
+        {particles.map(p => (
+           <button
+            key={p.id}
+            onClick={() => handleParticleClick(p.id)}
+            aria-label="interactive particle"
+            className={cn(
+              "absolute opacity-30 dark:opacity-20 transform-gpu",
+              poppedParticles.has(p.id) && 'animate-pop'
+              )}
+            style={p.style}
+          >
+            <p.Icon className="w-6 h-6" />
+          </button>
+        ))}
 
-      <Card className="w-full bg-card/80 backdrop-blur-sm shadow-2xl shadow-primary/20 rounded-2xl overflow-hidden">
-        <CardHeader className="text-center">
-          <CardTitle className="font-headline text-3xl text-foreground">Para Mi Amor</CardTitle>
-          <CardDescription className="font-body text-muted-foreground">1 de Agosto</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p className="font-body text-lg/relaxed text-foreground whitespace-pre-wrap">
-            {animatedContent}
-            {animatedContent.length === content.length && <span className="inline-block w-2 h-5 bg-foreground/70 animate-pulse ml-1" />}
-          </p>
-        </CardContent>
-        <CardFooter className="flex justify-end">
-        </CardFooter>
-      </Card>
+        <Card className="w-full bg-card/80 backdrop-blur-sm shadow-2xl shadow-primary/20 rounded-2xl overflow-hidden">
+          <CardHeader className="text-center">
+            <CardTitle className="font-headline text-3xl text-foreground">Para Mi Amor</CardTitle>
+            <CardDescription className="font-body text-muted-foreground">1 de Agosto</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p className="font-body text-lg/relaxed text-foreground whitespace-pre-wrap">
+              {animatedContent}
+              {animatedContent.length === content.length && <span className="inline-block w-2 h-5 bg-foreground/70 animate-pulse ml-1" />}
+            </p>
+          </CardContent>
+          <CardFooter className="flex justify-end">
+          </CardFooter>
+        </Card>
+      </div>
     </div>
   );
 }
