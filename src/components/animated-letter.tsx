@@ -10,12 +10,13 @@ import { MyMelodyIcon } from './icons/my-melody-icon';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
+import { HeartIcon } from './icons/heart-icon';
 
 interface AnimatedLetterProps {
   content: string;
 }
 
-const icons = [FlowerIcon, StrawberryIcon, MusicalNoteIcon];
+const icons = [FlowerIcon, StrawberryIcon, MusicalNoteIcon, HeartIcon];
 
 export default function AnimatedLetter({ content }: AnimatedLetterProps) {
   const [animatedContent, setAnimatedContent] = React.useState('');

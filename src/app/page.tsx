@@ -1,5 +1,4 @@
 import { Suspense } from 'react';
-import { generateMyMelodyLetter } from '@/ai/flows/generate-my-melody-letter';
 import AnimatedLetter from '@/components/animated-letter';
 import LetterSkeleton from '@/components/letter-skeleton';
 import { MyMelodyIcon } from '@/components/icons/my-melody-icon';
@@ -10,7 +9,6 @@ async function LetterContent() {
 Ni sabía que existía este día pero se que tu lo sabias …Gracias por estar en mi vida, por hacerme sentir querido, por hacer que los días sean más lindos solo con tu sonrisa. Espero tenerte a mi lado por el resto de mi vida… y más allá te amo DAIANA.
 
 Con todo mi amor,
-
 william`;
 
   return <AnimatedLetter content={letter} />;
