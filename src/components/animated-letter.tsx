@@ -17,10 +17,56 @@ interface AnimatedLetterProps {
 
 const icons = [FlowerIcon, StrawberryIcon, MusicalNoteIcon, HeartIcon];
 
+const Particles = () => {
+  const [poppedParticles, setPoppedParticles] = React.useState<Set<number>>(new Set());
+  
+  const particles = React.useMemo(() => Array.from({ length: 25 }).map((_, i) => ({
+    id: i,
+    Icon: i < 10 ? HeartIcon : icons[i % icons.length],
+    style: {
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      animation: `float ${Math.random() * 8 + 6}s ease-in-out infinite`,
+      animationDelay: `${Math.random() * 6}s`,
+      color: i < 10 ? 'hsl(var(--primary))' : 'hsl(var(--primary) / 0.3)',
+      transform: `scale(${Math.random() * 0.5 + 0.8})`
+    }
+  })), []);
+  
+  const handleParticleClick = (id: number) => {
+    setPoppedParticles(prev => new Set(prev).add(id));
+    setTimeout(() => {
+      setPoppedParticles(prev => {
+        const newSet = new Set(prev);
+        newSet.delete(id);
+        return newSet;
+      });
+    }, 300);
+  };
+  
+  return (
+    <div className="absolute inset-0 z-0 h-full w-full">
+      {particles.map(p => (
+        <button
+          key={p.id}
+          onClick={() => handleParticleClick(p.id)}
+          aria-label="interactive particle"
+          className={cn(
+            "absolute opacity-40 dark:opacity-30 transform-gpu",
+            poppedParticles.has(p.id) && 'animate-pop'
+          )}
+          style={p.style}
+        >
+          <p.Icon className="w-12 h-12" />
+        </button>
+      ))}
+    </div>
+  )
+}
+
 export default function AnimatedLetter({ content }: AnimatedLetterProps) {
   const [animatedContent, setAnimatedContent] = React.useState('');
   const [isRevealed, setIsRevealed] = React.useState(false);
-  const [poppedParticles, setPoppedParticles] = React.useState<Set<number>>(new Set());
   const [nameInput, setNameInput] = React.useState('');
   const [isUnlocked, setIsUnlocked] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState('');
@@ -55,31 +101,7 @@ export default function AnimatedLetter({ content }: AnimatedLetterProps) {
       setIsUnlocked(false);
     }
   };
-
-  const particles = React.useMemo(() => Array.from({ length: 25 }).map((_, i) => ({
-    id: i,
-    Icon: i < 10 ? HeartIcon : icons[i % icons.length],
-    style: {
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-      animation: `float ${Math.random() * 8 + 6}s ease-in-out infinite`,
-      animationDelay: `${Math.random() * 6}s`,
-      color: i < 10 ? 'hsl(var(--primary))' : 'hsl(var(--primary) / 0.3)',
-      transform: `scale(${Math.random() * 0.5 + 0.8})`
-    }
-  })), []);
   
-  const handleParticleClick = (id: number) => {
-    setPoppedParticles(prev => new Set(prev).add(id));
-    setTimeout(() => {
-      setPoppedParticles(prev => {
-        const newSet = new Set(prev);
-        newSet.delete(id);
-        return newSet;
-      });
-    }, 300);
-  };
-
   if (!isRevealed) {
     return (
        <div className="text-center bg-card/80 backdrop-blur-sm shadow-2xl shadow-primary/20 rounded-2xl p-8 max-w-md w-full flex flex-col items-center">
@@ -120,51 +142,39 @@ export default function AnimatedLetter({ content }: AnimatedLetterProps) {
   }
 
   return (
-    <div 
-        className="relative w-full max-w-2xl animate-in fade-in duration-1000 rounded-2xl overflow-hidden"
-    >
-        <div 
-            className="absolute inset-0"
-            style={{
-                backgroundImage: `url(/mymelody.png)`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat',
-                opacity: 0.3,
-            }}
-        />
-      <div className="absolute inset-0 bg-background/50 backdrop-blur-sm" />
-      <div className="relative z-10">
-        {particles.map(p => (
-           <button
-            key={p.id}
-            onClick={() => handleParticleClick(p.id)}
-            aria-label="interactive particle"
-            className={cn(
-              "absolute opacity-40 dark:opacity-30 transform-gpu",
-              poppedParticles.has(p.id) && 'animate-pop'
-              )}
-            style={p.style}
-          >
-            <p.Icon className="w-12 h-12" />
-          </button>
-        ))}
-
-        <Card className="w-full bg-card/60 backdrop-blur-sm shadow-2xl shadow-primary/20 rounded-2xl overflow-hidden border-none">
-          <CardHeader className="text-center">
-            <CardTitle className="font-headline text-3xl text-foreground">Para Mi Amor</CardTitle>
-            <CardDescription className="font-body text-muted-foreground">1 de Agosto</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <p className="font-body text-lg/relaxed text-foreground whitespace-pre-wrap">
-              {animatedContent}
-              {animatedContent.length === content.length && <span className="inline-block w-2 h-5 bg-foreground/70 animate-pulse ml-1" />}
-            </p>
-          </CardContent>
-          <CardFooter className="flex justify-end">
-          </CardFooter>
-        </Card>
+    <>
+      <Particles />
+      <div 
+          className="relative w-full max-w-2xl animate-in fade-in duration-1000 rounded-2xl overflow-hidden"
+      >
+          <div 
+              className="absolute inset-0"
+              style={{
+                  backgroundImage: `url(/mymelody.png)`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat',
+                  opacity: 0.3,
+              }}
+          />
+        <div className="absolute inset-0 bg-background/50 backdrop-blur-sm" />
+        <div className="relative z-10">
+          <Card className="w-full bg-card/60 backdrop-blur-sm shadow-2xl shadow-primary/20 rounded-2xl overflow-hidden border-none">
+            <CardHeader className="text-center">
+              <CardTitle className="font-headline text-3xl text-foreground">Para Mi Amor</CardTitle>
+              <CardDescription className="font-body text-muted-foreground">1 de Agosto</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className="font-body text-lg/relaxed text-foreground whitespace-pre-wrap">
+                {animatedContent}
+                {animatedContent.length === content.length && <span className="inline-block w-2 h-5 bg-foreground/70 animate-pulse ml-1" />}
+              </p>
+            </CardContent>
+            <CardFooter className="flex justify-end">
+            </CardFooter>
+          </Card>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
