@@ -5,20 +5,17 @@ import LetterSkeleton from '@/components/letter-skeleton';
 import { MyMelodyIcon } from '@/components/icons/my-melody-icon';
 
 async function LetterContent() {
-  try {
-    const { letterContent } = await generateMyMelodyLetter({
-      prompt: "Una dulce y sincera carta para mi novia, celebrando el Día de la Novia el 1 de agosto. Incorpórale el encanto de My Melody, usando temas de amor, música y flores. Haz que se sienta mágica y personal."
-    });
-    return <AnimatedLetter content={letterContent} />;
-  } catch (error) {
-    console.error("Failed to generate letter:", error);
-    return (
-      <div className="text-center text-destructive-foreground bg-destructive p-4 rounded-md">
-        <p>Lo siento, no pude escribir la carta en este momento.</p>
-        <p>Por favor, inténtalo de nuevo más tarde.</p>
-      </div>
-    );
-  }
+  const letter = `M amor,
+
+Mi novia, la más enojona, chinchosa y dramática… sí, esa misma es a quien amo con todo mi corazón. Porque detrás de cada enojo está su dulzura, y en cada drama, su forma única de amar. Desde que llegaste a mi vida, todo se ha vuelto más intenso, más bonito, más real. Trajiste risas, retos, abrazos que sanan, y una manera de querer que no cambio por nada. Eres mi caos favorito… y mi paz también.
+
+Ni sabía que existía este día pero se que tu lo sabias …Gracias por estar en mi vida, por hacerme sentir querido, por hacer que los días sean más lindos solo con tu sonrisa. Espero tenerte a mi lado por el resto de mi vida… y más allá.
+
+Con todo mi amor,
+
+william`;
+
+  return <AnimatedLetter content={letter} />;
 }
 
 export default function Home() {
@@ -27,7 +24,7 @@ export default function Home() {
       <header className="text-center mb-8 flex flex-col items-center gap-4">
         <MyMelodyIcon className="w-24 h-24 text-accent drop-shadow-lg" />
         <h1 className="font-headline text-4xl md:text-5xl text-foreground drop-shadow-md">
-          Una Carta Para Mi Novia
+          Para la mejor novia
         </h1>
       </header>
       <Suspense fallback={<LetterSkeleton />}>

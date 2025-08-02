@@ -85,7 +85,7 @@ export default function AnimatedLetter({ content }: AnimatedLetterProps) {
 
       <Card className="w-full bg-card/80 backdrop-blur-sm shadow-2xl shadow-accent/20 rounded-2xl overflow-hidden">
         <CardHeader className="text-center">
-          <CardTitle className="font-headline text-3xl text-foreground">Para Mi Novia Querida</CardTitle>
+          <CardTitle className="font-headline text-3xl text-foreground">Para Mi Amor</CardTitle>
           <CardDescription className="font-body text-muted-foreground">1 de Agosto</CardDescription>
         </CardHeader>
         <CardContent>
