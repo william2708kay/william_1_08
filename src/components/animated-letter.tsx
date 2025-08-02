@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from 'react';
+import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { FlowerIcon } from './icons/flower-icon';
@@ -56,14 +57,15 @@ export default function AnimatedLetter({ content }: AnimatedLetterProps) {
     }
   };
 
-  const particles = React.useMemo(() => Array.from({ length: 15 }).map((_, i) => ({
+  const particles = React.useMemo(() => Array.from({ length: 25 }).map((_, i) => ({
     id: i,
-    Icon: icons[i % icons.length],
+    Icon: i < 10 ? HeartIcon : icons[i % icons.length],
     style: {
       left: `${Math.random() * 100}%`,
       top: `${Math.random() * 100}%`,
       animation: `float ${Math.random() * 8 + 6}s ease-in-out infinite`,
       animationDelay: `${Math.random() * 6}s`,
+      color: i < 10 ? 'hsl(var(--primary))' : 'hsl(var(--primary) / 0.3)',
     }
   })), []);
   
@@ -80,8 +82,9 @@ export default function AnimatedLetter({ content }: AnimatedLetterProps) {
 
   if (!isRevealed) {
     return (
-       <div className="text-center bg-card/80 backdrop-blur-sm shadow-2xl shadow-primary/20 rounded-2xl p-8 max-w-md w-full">
-         <h2 className="font-headline text-2xl text-foreground mb-4">HOLA, SOY WILL</h2>
+       <div className="text-center bg-card/80 backdrop-blur-sm shadow-2xl shadow-primary/20 rounded-2xl p-8 max-w-md w-full flex flex-col items-center">
+         <Image src="/giftmelody.gif" alt="My Melody GIF" width={120} height={120} unoptimized />
+         <h2 className="font-headline text-2xl text-foreground mt-4 mb-4">HOLA, SOY WILL</h2>
          <p className="text-muted-foreground mb-6">Esta carta solo la puede ver mi novia. Por favor, ingresa tu nombre.</p>
          <div className="flex flex-col gap-4 items-center">
             <Input 
@@ -120,7 +123,7 @@ export default function AnimatedLetter({ content }: AnimatedLetterProps) {
           onClick={() => handleParticleClick(p.id)}
           aria-label="interactive particle"
           className={cn(
-            "absolute text-primary opacity-30 dark:opacity-20 transform-gpu",
+            "absolute opacity-30 dark:opacity-20 transform-gpu",
             poppedParticles.has(p.id) && 'animate-pop'
             )}
           style={p.style}
