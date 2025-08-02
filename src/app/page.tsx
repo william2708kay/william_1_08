@@ -5,11 +5,9 @@ import LetterSkeleton from '@/components/letter-skeleton';
 import { MyMelodyIcon } from '@/components/icons/my-melody-icon';
 
 async function LetterContent() {
-  const letter = `M amor,
+  const letter = `Mi novia, la más enojona, chinchosa y dramática… sí, esa misma es a quien amo con todo mi corazón. Porque detrás de cada enojo está su dulzura, y en cada drama, su forma única de amar. Desde que llegaste a mi vida, todo se ha vuelto más intenso, más bonito, más real. Trajiste risas, retos, abrazos que sanan, y una manera de querer que no cambio por nada. Eres mi caos favorito… y mi paz también.
 
-Mi novia, la más enojona, chinchosa y dramática… sí, esa misma es a quien amo con todo mi corazón. Porque detrás de cada enojo está su dulzura, y en cada drama, su forma única de amar. Desde que llegaste a mi vida, todo se ha vuelto más intenso, más bonito, más real. Trajiste risas, retos, abrazos que sanan, y una manera de querer que no cambio por nada. Eres mi caos favorito… y mi paz también.
-
-Ni sabía que existía este día pero se que tu lo sabias …Gracias por estar en mi vida, por hacerme sentir querido, por hacer que los días sean más lindos solo con tu sonrisa. Espero tenerte a mi lado por el resto de mi vida… y más allá.
+Ni sabía que existía este día pero se que tu lo sabias …Gracias por estar en mi vida, por hacerme sentir querido, por hacer que los días sean más lindos solo con tu sonrisa. Espero tenerte a mi lado por el resto de mi vida… y más allá te amo DAIANA.
 
 Con todo mi amor,
 
