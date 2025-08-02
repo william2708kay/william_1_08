@@ -7,7 +7,6 @@ import { cn } from "@/lib/utils";
 import { FlowerIcon } from './icons/flower-icon';
 import { MusicalNoteIcon } from './icons/musical-note-icon';
 import { StrawberryIcon } from './icons/strawberry-icon';
-import { MyMelodyIcon } from './icons/my-melody-icon';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { HeartIcon } from './icons/heart-icon';
@@ -83,7 +82,6 @@ export default function AnimatedLetter({ content }: AnimatedLetterProps) {
   if (!isRevealed) {
     return (
        <div className="text-center bg-card/80 backdrop-blur-sm shadow-2xl shadow-primary/20 rounded-2xl p-8 max-w-md w-full flex flex-col items-center">
-         <MyMelodyIcon className="w-24 h-24 text-primary mb-4" />
          <p className="text-muted-foreground mb-6">Esta carta solo la puede ver mi novia. Por favor, ingresa tu nombre.</p>
          <div className="flex flex-col gap-4 items-center">
             <Input 
@@ -143,7 +141,6 @@ export default function AnimatedLetter({ content }: AnimatedLetterProps) {
           </p>
         </CardContent>
         <CardFooter className="flex justify-end">
-           <MyMelodyIcon className="w-12 h-12 text-primary" />
         </CardFooter>
       </Card>
     </div>

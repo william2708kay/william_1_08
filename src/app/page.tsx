@@ -1,5 +1,4 @@
 import AnimatedLetter from '@/components/animated-letter';
-import { MyMelodyIcon } from '@/components/icons/my-melody-icon';
 import Image from 'next/image';
 
 export default function Home() {
@@ -22,7 +21,6 @@ lo siento por no estar ahí estoy preparando algo muy bonito pronto estaremos ju
       <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" />
       <div className="z-10 flex flex-col items-center justify-center w-full">
         <header className="text-center mb-8 flex flex-col items-center gap-4">
-          <MyMelodyIcon className="w-24 h-24 text-primary drop-shadow-lg" />
           <h1 className="font-headline text-4xl md:text-5xl text-foreground drop-shadow-md">
             Para la mejor novia
           </h1>
